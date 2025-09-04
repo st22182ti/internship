@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+</head>
+
+<style>
+    .ranking-img {
+        width: 100%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    #panda {
+        position: fixed;
+        bottom: 20px;
+        left: -200px;
+        width: 200px;
+        height: 200px;
+    }
+
+    #panda img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+</style>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const frame = document.getElementById("panda");
+        const panda1 = document.getElementById("panda1");
+        const panda2 = document.getElementById("panda2");
+
+        panda1.style.opacity = 1;
+        panda2.style.opacity = 0;
+
+        setInterval(() => {
+            if (panda1.style.opacity == 1) {
+                panda1.style.opacity = 0;
+                panda2.style.opacity = 1;
+            } else {
+                panda1.style.opacity = 1;
+                panda2.style.opacity = 0;
+            }
+            const newLeft = frame.offsetLeft + 30;
+            if (newLeft > window.innerWidth) {
+                frame.style.left = -200 + "px";
+            } else {
+                frame.style.left = newLeft + "px";
+            }
+        }, 500);
+    });
+</script>
+
+<body>
+    <div class="p-3">
+        <h5 class="m-5 border-bottom pb-3 ps-2">
+            目玉焼きに合う調味料ランキング
+        </h5>
+        <ul class="m-5 rounded-3 p-0">
+
+            <li class="row border-bottom py-5">
+                <div class="col-1 text-end fw-bold">1.</div>
+                <div class="col">
+                    <div class="fw-bold">スイートチリソース</div>
+                    <div class="pt-2">
+                        <p>唐辛子とにんにくを使った甘いソース</p>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <img src="https://news.tnc.co.jp/data/life/2023/09/20230926_01_02.jpg" class="ranking-img">
+                </div>
+            </li>
+
+            <li class="row border-bottom py-5">
+                <div class="col-1 text-end fw-bold">2.</div>
+                <div class="col">
+                    <div class="fw-bold">醤油</div>
+                    <div class="pt-2">
+                        <p>おいしい</p>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <img src="https://media.delishkitchen.tv/article/94/1569x4id7t3.jpg" class="ranking-img">
+                </div>
+            </li>
+
+            <li class="row border-bottom py-5">
+                <div class="col-1 text-end fw-bold">3.</div>
+                <div class="col">
+                    <div class="fw-bold">ハーブソルト</div>
+                    <div class="pt-2">
+                        <p>しょっぱくて美味しい</p>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPkhpR7jJxcmC0iklI0b-2FMoKDzz7Chq_SlVLoYgCoszgq2t_nV_3Z2xvo8NxJO600zs&usqp=CAU"
+                        class="ranking-img">
+                </div>
+            </li>
+
+            <li class="row border-bottom py-5">
+                <div class="col-1 text-end fw-bold">4.</div>
+                <div class="col">
+                    <div class="fw-bold">塩コショウ</div>
+                    <div class="pt-2">
+                        <p>シンプルで美味しい</p>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <img src="https://cancam.jp/wp-content/uploads/2017/04/6a918befa8a20ae440cbf78a43a62f8f-20170406204221-500x334.jpg"
+                        class="ranking-img">
+                </div>
+            </li>
+
+
+        </ul>
+    </div>
+
+    <div id="panda">
+        <img src="panda1.png" id="panda1">
+        <img src="panda2.png" id="panda2">
+    </div>
+</body>
+
+</html>
