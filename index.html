@@ -23,7 +23,7 @@
 
     #panda {
         position: fixed;
-        bottom: 20px;
+        bottom: 5px;
         left: -200px;
         width: 200px;
         height: 200px;
@@ -36,32 +36,6 @@
         object-fit: contain;
     }
 </style>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const frame = document.getElementById("panda");
-        const panda1 = document.getElementById("panda1");
-        const panda2 = document.getElementById("panda2");
-
-        panda1.style.opacity = 1;
-        panda2.style.opacity = 0;
-
-        setInterval(() => {
-            if (panda1.style.opacity == 1) {
-                panda1.style.opacity = 0;
-                panda2.style.opacity = 1;
-            } else {
-                panda1.style.opacity = 1;
-                panda2.style.opacity = 0;
-            }
-            const newLeft = frame.offsetLeft + 30;
-            if (newLeft > window.innerWidth) {
-                frame.style.left = -200 + "px";
-            } else {
-                frame.style.left = newLeft + "px";
-            }
-        }, 500);
-    });
-</script>
 
 <body>
     <div class="p-3">
@@ -133,5 +107,61 @@
         <img src="panda2.png" id="panda2">
     </div>
 </body>
+<script defer>
+    // パンダアニメーション
+    let pandaStep = 30
+    document.addEventListener("DOMContentLoaded", function () {
+        const frame = document.getElementById("panda");
+        const panda1 = document.getElementById("panda1");
+        const panda2 = document.getElementById("panda2");
+
+        panda1.style.opacity = 1;
+        panda2.style.opacity = 0;
+
+        setInterval(() => {
+            if (panda1.style.opacity == 1) {
+                panda1.style.opacity = 0;
+                panda2.style.opacity = 1;
+            } else {
+                panda1.style.opacity = 1;
+                panda2.style.opacity = 0;
+            }
+            const newLeft = frame.offsetLeft + pandaStep;
+            if (newLeft > window.innerWidth) {
+                frame.style.left = -200 + "px";
+            } else {
+                frame.style.left = newLeft + "px";
+            }
+        }, 500);
+    });
+
+    function pandaJump() {
+        const frame = document.getElementById("panda");
+        frame.style.bottom = "80px";
+        setTimeout(() => {
+            frame.style.bottom = "5px";
+        }, 300);
+    }
+
+    document.addEventListener("click", function () {
+        pandaJump();
+    });
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "ArrowUp") {
+            pandaJump();
+        }
+    });
+
+    document.getElementById("panda").addEventListener("click", () => {
+        const frame = document.getElementById("panda");
+        const w = frame.offsetWidth
+        const h = frame.offsetHeight;
+        frame.style.width = w + 20 + "px";
+        frame.style.height = h + 20 + "px";
+        pandaStep += 5;
+    });
+</script>
+
 
 </html>
